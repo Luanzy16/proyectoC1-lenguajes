@@ -1,5 +1,11 @@
 # Analizador Léxico en Python
 
+### Integrantes 
+
+- Luis Sánchez
+- David Bermudez
+- Santiago Ospina
+
 Este proyecto implementa un analizador léxico para el lenguaje Python sin utilizar librerías externas. El programa lee un archivo de código fuente `.py`, analiza los tokens y genera un archivo de salida `.txt` con la lista de tokens detectados. En caso de encontrar un error léxico, se aborta el análisis y se muestra un mensaje de error en la terminal.
 
 ## Requisitos
@@ -36,7 +42,6 @@ Ejemplo de salida:
 <id,y,2,1>
 <tk_asignacion,2,3>
 <tk_entero,20,2,5>
->>> Error léxico(linea:3,posicion:7)
 ```
 
 ## Explicación del código
