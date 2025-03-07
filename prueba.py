@@ -116,6 +116,7 @@ def lexer(filename):
     while i < length:
         char = source_code[i]
 
+        #Ignorar saltos de linea y espacios
         if char in " \t":
             col += 1
             i += 1
@@ -125,12 +126,14 @@ def lexer(filename):
             col = 1
             i += 1
             continue
-
+        
+        #Ignorando comentarios
         if char == "#":
             while i < length and source_code[i] != "\n":
                 i += 1
             continue
-
+        
+        #Si es un string
         if is_alpha(char):
             start_col = col
             lexeme = ""
@@ -143,7 +146,8 @@ def lexer(filename):
             else:
                 tokens.append(f"<id,{lexeme},{row},{start_col}>")
             continue
-
+        
+        #si es un numero
         if is_digit(char):
             start_col = col
             lexeme = ""
@@ -153,7 +157,8 @@ def lexer(filename):
                 col += 1
             tokens.append(f"<tk_entero,{lexeme},{row},{start_col}>")
             continue
-
+        
+        #si es una cadena "string"
         if char in "\"'":
             start_col = col
             quote = char
@@ -170,19 +175,22 @@ def lexer(filename):
                 col += 1
             tokens.append(f"<tk_cadena,{lexeme},{row},{start_col}>")
             continue
-
+        
+        #si es un operador de dos simbolos
         if i + 1 < length and source_code[i:i+2] in OPERATORS:
             tokens.append(f"<{OPERATORS[source_code[i:i+2]]},{source_code[i:i+2]},{row},{col}>")
             i += 2
             col += 2
             continue
-
+        
+        #Si es un operador de un solo simbolo
         if char in OPERATORS:
             tokens.append(f"<{OPERATORS[char]},{char},{row},{col}>")
             i += 1
             col += 1
             continue
 
+        #si es un signo de puntuacion    
         if char in PUNCTUATION:
             tokens.append(f"<{PUNCTUATION[char]},{char},{row},{col}>")
             i += 1
