@@ -47,18 +47,60 @@ PUNCTUATION = {
 
 
 def is_digit(char):
+    """
+    Verifica si un carácter dado es un dígito (0-9).
+
+    Parámetros:
+        char (str): Un solo carácter a evaluar.
+
+    Retorna:
+        bool: True si el carácter es un dígito, False en caso contrario.
+    """
     return "0" <= char <= "9"
 
 
 def is_alpha(char):
+    """
+    Verifica si un carácter dado es una letra (mayúscula, minúscula) o un guion bajo (_).
+
+    Parámetros:
+        char (str): Un solo carácter a evaluar.
+
+    Retorna:
+        bool: True si el carácter es una letra o "_", False en caso contrario.
+    """
     return ("a" <= char <= "z") or ("A" <= char <= "Z") or (char == "_")
 
 
 def is_alnum(char):
+    """
+    Verifica si un carácter dado es alfanumérico (letra, dígito o guion bajo).
+
+    Parámetros:
+        char (str): Un solo carácter a evaluar.
+
+    Retorna:
+        bool: True si el carácter es una letra, un número o "_", False en caso contrario.
+    """
     return is_alpha(char) or is_digit(char)
 
 
 def lexer(filename):
+    """
+    Analizador léxico (Lexer) que procesa un archivo Python y genera una lista de tokens.
+
+    Parámetros:
+        filename (str): Nombre del archivo de entrada que contiene código fuente en Python.
+
+    Funcionamiento:
+        - Lee el archivo y extrae tokens de palabras clave, identificadores, números, cadenas y símbolos.
+        - Omite espacios en blanco y comentarios.
+        - Detecta y reporta errores léxicos si se encuentra un carácter no reconocido.
+        - Guarda los tokens en un archivo de salida con el mismo nombre, pero con la extensión "_tokens.txt".
+
+    Retorna:
+        None. Los tokens extraídos se almacenan en un archivo de salida.
+    """
     try:
         with open(filename, "r", encoding="utf-8") as file:
             source_code = file.read()
