@@ -198,7 +198,7 @@ def lexer(filename):
             continue
 
         print(f">>> Error léxico(linea:{row},posicion:{col})")
-        return None
+        break
 
     # Guardar los tokens en un archivo de salida
     output_filename = filename.replace(".py", "_tokens.txt")
@@ -213,3 +213,4 @@ def lexer(filename):
 #Ejecucion del lexer
 filename = "ejemplo.py"
 lexer(filename)
+
